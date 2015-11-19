@@ -16,10 +16,12 @@
 #include "opencv2/imgproc/imgproc.hpp"
 
 #include "MSAC.h"
-#include "rectify.h"
+//#include "rectify.h"
 #include "lsd.h"
 
+using namespace std;
+using namespace cv;
+
 std::vector<cv::Mat> processImage(MSAC &msac, int numVps, cv::Mat &img, cv::Mat &outputImg);
-vector<string> FindAllFile(const char* dir, bool ishavedir);
-int saveImgByVP(string saveDir, string imgName, Mat outputImg, vector<Mat> vps);
+//vector<string> FindAllFile(const char* dir, bool ishavedir);
 int computeVPDirection(Mat outputImg, vector<Mat> vps);

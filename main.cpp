@@ -3,6 +3,9 @@
 using namespace cv;
 using namespace std;
 
+extern "C" {
+
+//???????ڣ?????ͼ????·??+?ļ??�����????һ????????-1????ʧ????????0??????ʧ??????û?ж��?ͼƬ??1????ʧ??????;??
 int detectVanishingPoint(char* dirAndName, char* imgName)
 {		
 	string ins = (string)dirAndName;
@@ -11,7 +14,7 @@ int detectVanishingPoint(char* dirAndName, char* imgName)
 	{
 		return -1;
 	}
-
+	
 	int procWidth = -1;
 	int procHeight = -1;
 	cv::Size procSize;
@@ -56,20 +59,14 @@ int detectVanishingPoint(char* dirAndName, char* imgName)
 	}
 
 	int numVps = 3;
-	Rect r(0,0, imgGRAY.cols, imgGRAY.rows*0.7);
-	Mat srcROI( imgGRAY,r );
-	Mat srcROIR(imgGRAY.rows*0.7, imgGRAY.cols, srcROI.type());
-	resize(srcROI, srcROIR, Size(srcROIR.cols, srcROIR.rows));
+    Rect r(0,0, imgGRAY.cols, imgGRAY.rows*0.7);
+    Mat srcROI( imgGRAY,r );
+    Mat srcROIR(imgGRAY.rows*0.7, imgGRAY.cols, srcROI.type());
+    resize(srcROI, srcROIR, Size(srcROIR.cols, srcROIR.rows));
 	std::vector<cv::Mat> vps = processImage(msac, numVps, srcROIR, outputImg);
 
-	int flag = computeVPDirection(outputImg, vps);
+	//?󷵻?-1???޷???0???ҷ???1
+    int flag = computeVPDirection(outputImg, vps);
 	return flag;	
 }
-
-int main()
-{
-	char* dirAndName = "D:\\pic\\ori\\ori\\3b1ba92a3bec2c11be0a77dd9d6a9337.jpg";
-	char* imgName = "3b1ba92a3bec2c11be0a77dd9d6a9337.jpg";
-	detectVanishingPoint(dirAndName, imgName);
-	return 1;
 }

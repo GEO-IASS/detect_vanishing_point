@@ -1,9 +1,9 @@
 #ifndef __MSAC_H__
 #define __MSAC_H__
 
-#include "cv.h"      
-#include "highgui.h" 
-#include "cxcore.h"  
+#include "opencv/cv.h"      
+#include "opencv/highgui.h" 
+#include "opencv/cxcore.h"  
 
 #include "errorNIETO.h"
 
